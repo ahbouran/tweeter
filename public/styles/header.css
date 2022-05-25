@@ -1,11 +1,11 @@
-header {
+.first-header {
   background-color: #e0bb00;
   color: white;
   font-size: 1.5em;
-  height: 500px;
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 25px;
+  padding-top: 125px;
+  height: 225px;
 }

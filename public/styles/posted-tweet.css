@@ -1,0 +1,40 @@
+.posted-tweet {
+  display:flex;
+  flex-direction: column;
+  border: solid;
+  margin-top: 50px;
+  padding: 15px;
+}
+
+.tweet-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tweet-footer {
+  font-size: 0.75em;
+  display: flex;
+  justify-content: space-between;
+  border-top: solid black;
+  padding-top: 10px
+}
+
+.handle {
+  color:grey
+}
+
+.posted-tweet:hover {
+  box-shadow: 5px 5px 5px #CBC3E3;
+}
+
+.flag:hover {
+  color: gold;
+}
+
+.retweet:hover {
+  color: gold;
+}
+
+.heart:hover {
+  color: gold;
+}
