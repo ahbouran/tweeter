@@ -50,8 +50,9 @@ const createTweetElement = function(tweet) {
 };
 
 
+
 $(document).ready(function () {
-  
+
   const renderTweets = function(tweets) {
     for (tweet of tweets) {
     let returnValue = createTweetElement(tweet)
@@ -61,22 +62,29 @@ $(document).ready(function () {
   }
 
   const $form = ('#submit-tweet')
+  
   $($form).submit(function(e) {
+
     e.preventDefault()
 
-    
+    const textInput = document.getElementById('tweet-text');
+    let lengthTextInput = textInput.value.length;
+
+    if (lengthTextInput > 140 || lengthTextInput === 0 || lengthTextInput === null) {
+      alert('Sorry, invalid input')
+      return
+    };
+
     const $tweetInput = $(this).serialize()
     $.post('/tweets', $tweetInput )
     .then(() => loadTweets())
   })
 
-
-
+  
 const loadTweets = function() {
   $.get('/tweets')
   .then((tweetData) => {
     renderTweets(tweetData);
-    console.log('tweet data: ', tweetData)
   })
 };
 // loadTweets()
