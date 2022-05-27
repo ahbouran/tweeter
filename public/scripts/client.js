@@ -75,13 +75,13 @@ $(document).ready(function () {
 
     
     if (tweetLength > 140 || tweetLength === 0 || tweetLength === null) {
-      alert('Sorry, invalid input')
-      return
-    };
-
+      $('.error-alert').slideDown();
+      return false
+    } else {
+      $('.error-alert').hide()
     $.post('/tweets', tweetInput )
     .then(() => clearArea.value = "")
-    .then(() => loadTweets())
+    .then(() => loadTweets()) }
   })
 
 
