@@ -4,69 +4,56 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// const data = [
-//   {
-//     "user": {
-//       "name": "Newton",
-//       "avatars": "https://i.imgur.com/73hZDYK.png"
-//       ,
-//       "handle": "@SirIsaac"
-//     },
-//     "content": {
-//       "text": "If I have seen further it is by standing on the shoulders of giants"
-//     },
-//     "created_at": 1461116232227
-//   },
-//   {
-//     "user": {
-//       "name": "Descartes",
-//       "avatars": "https://i.imgur.com/nlhLi3I.png",
-//       "handle": "@rd" },
-//     "content": {
-//       "text": "Je pense , donc je suis"
-//     },
-//     "created_at": 1461113959088
-//   }
-// ]
+////////////////////////////////////////////////Helper Functions/////////////////////////////////////////////////////
 
+const escape = function (text) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(text));
+  return div.innerHTML;
+};
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 const createTweetElement = function(tweet) {
   
+
   const $tweet = $(`<article class="posted-tweet">
                       <header class="tweet-header">
                           <div class="name"><img src="${tweet.user.avatars}">${tweet.user.name} </div>
                           <div class="handle">${tweet.user.handle}</div>
                       </header>
-                      <p class="text"> ${tweet.content.text}</p>
+                      <p class="text"> ${escape(tweet.content.text)}</p>
                       <footer class="tweet-footer">
                           <div class="time-created">${timeago.format(tweet.created_at)}</div>
                           <div> <i class="fa-solid fa-flag flag"></i> <i class="fa-solid fa-retweet retweet"></i> <i class="fa-solid fa-heart heart"></i> </div>
                       </footer>
                     </article>`);
   
-  return $tweet
+  return $tweet;
 };
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 $(document).ready(function () {
 
   const renderTweets = function(tweets) {
     $('#tweets-container').empty();
     for (tweet of tweets) {
-    let returnValue = createTweetElement(tweet)
-    $('#tweets-container').prepend(returnValue)
+      let returnValue = createTweetElement(tweet);
+      $('#tweets-container').prepend(returnValue);
     }
+  };
 
-  }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  const $form = ('#submit-tweet')
+  const $form = ('#submit-tweet');
   
   $($form).submit(function(e) {
 
-    e.preventDefault()
+    e.preventDefault();
     
     const clearArea = document.getElementById('tweet-text');
 
@@ -76,29 +63,26 @@ $(document).ready(function () {
     
     if (tweetLength > 140 || tweetLength === 0 || tweetLength === null) {
       $('.error-alert').slideDown();
-      return false
+      return false;
     } else {
-      $('.error-alert').hide()
-    $.post('/tweets', tweetInput )
-    .then(() => clearArea.value = "")
-    .then(() => loadTweets()) }
-  })
+      $('.error-alert').hide();
+      $.post('/tweets', tweetInput )
+        .then(() => clearArea.value = "")
+        .then(() => loadTweets()) };
+  });
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const loadTweets = function() {
-  $.get('/tweets')
-  .then((tweetData) => {
-    // console.log('tweet Data:', tweetData)
-    renderTweets(tweetData);
-  })
-};
+  const loadTweets = function() {
+    $.get('/tweets')
+      .then((tweetData) => {
+        renderTweets(tweetData);
+      });
+  };
 
- loadTweets()
+  loadTweets();
 
 });
 
 
 
-// $(document).ready(function (){
-//   renderTweets(data);
-// });
