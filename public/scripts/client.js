@@ -67,7 +67,10 @@ $(document).ready(function () {
     } else {
       $('.error-alert').hide();
       $.post('/tweets', tweetInput )
-        .then(() => clearArea.value = "")
+        .then(() => {
+          clearArea.value = ""
+          $('.counter').val(140)
+        })
         .then(() => loadTweets()) };
   });
 

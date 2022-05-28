@@ -6,6 +6,10 @@
   padding: 15px;
 }
 
+.posted-tweet .text {
+  overflow-wrap: break-word;
+}
+
 .tweet-header {
   display: flex;
   justify-content: space-between;

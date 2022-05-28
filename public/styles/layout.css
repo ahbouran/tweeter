@@ -31,9 +31,41 @@ body {
 
 main {
   padding-bottom: 400px;
-  margin-left: 5%;
-  margin-right: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
   display: flex;
 
 }
 
+
+@media all and (max-width: 1024px) {
+  body > header {
+    width: 100%;
+  }
+
+}
+
+@media all and (min-width: 1024px) {
+  
+body {
+  display: flex;
+}
+
+.container {
+  padding-top: 150px;
+  width: 70%;
+  padding-left: 5%;
+  padding-right: 5%;
+
+}
+
+.first-header {
+  margin-top: 175px;
+  
+}
+
+body > header {
+  width: 30%;
+}
+
+}
