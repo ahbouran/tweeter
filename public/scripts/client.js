@@ -61,10 +61,16 @@ $(document).ready(function () {
     const tweetLength = $('textarea').val().length;
 
     
-    if (tweetLength > 140 || tweetLength === 0 || tweetLength === null) {
+    if (tweetLength > 140) {
       $('.error-alert').slideDown();
       return false;
-    } else {
+    
+    } else if (tweetLength === 0 || tweetLength === null) {
+      $('.no-input-error').slideDown();
+      return false;
+    }
+    else {
+      $('.no-input-error').hide();
       $('.error-alert').hide();
       $.post('/tweets', tweetInput )
         .then(() => {

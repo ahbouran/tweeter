@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
     <link rel="stylesheet" href="/styles/posted-tweet.css" type="text/css" />
     <link rel="stylesheet" href="/styles/error-alert.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/no-input-error.css" type="text/css" />
+
 
 
 
@@ -51,11 +53,14 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
+        <div class="no-input-error" style="display:none">
+          Can't tweet without any characters!
+        </div>
         <div class="error-alert" style="display:none">
           Too long! Please use shorten your tweet. 
         </div>
         <form action="/tweets" method="POST" id="submit-tweet">
-          <textarea name="text" id="tweet-text" placeholder="What are you humming about?" required></textarea>
+          <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
           <div class="button-counter">
             <button type="submit" class="tweet-button">Tweet</button>
             <output name="counter" class="counter" for="tweet-text">140</output>
